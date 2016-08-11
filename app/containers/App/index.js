@@ -3,6 +3,7 @@ import base from './css/base.css'
 import style from './css/style.css'
 
 import React from 'react'
+import IconConfigurator from './IconConfigurator'
 
 import Header from '../Header'
 import Main from '../Main'
@@ -13,7 +14,9 @@ class App extends React.Component {
     return (
       <div className={style.app}>
         <Header/>
-          <Main />
+          <IconConfigurator>
+            <Main />
+          </IconConfigurator>
         <Footer/>
       </div>
     );
