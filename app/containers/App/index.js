@@ -12,7 +12,6 @@ class App extends React.Component {
  render() {
     return (
       <div className={style.app}>
-        <h1>red text <small>green</small></h1>
         <Header/>
           <Main />
         <Footer/>

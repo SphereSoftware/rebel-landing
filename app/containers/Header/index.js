@@ -6,10 +6,8 @@ class Header extends React.Component {
     return (
       <header>
         <nav>
-          <a href="/">Project</a>
           <a href="/about/">About Us</a>
           <a href="/contact/">Contact</a>
-          <a href="/terms/">Privacy & Licence</a>
         </nav>
       </header>
     );
