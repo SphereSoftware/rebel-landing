@@ -1,6 +1,13 @@
 main {
   flex: 1;
+
   ul {
+    display: flex;
     list-style: none;
+
+    li {
+      justify-content: flex-start;
+      margin-right: 25px;
+    }
   }
 }

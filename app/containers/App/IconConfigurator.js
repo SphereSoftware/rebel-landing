@@ -12,8 +12,8 @@ export default class IconConfigurator extends Component {
   getChildContext() {
     return {
       reactIconBase: {
-        color: 'tomato',
-        size: 44,
+        color: 'grey',
+        size: 64,
         style: {
 
         }
