@@ -8,17 +8,10 @@ const initialState = {
 
 export default handleActions({
   'select icon' (state, action) {
-
     return {
       ...state,
-      currentIcon: action.payload.currentIcon
+      currentIcon: action.payload
     }
-    // return state.map(todo => {
-    //   return todo.id === action.payload.id
-    //     ? { ...todo, text: action.payload.text }
-    //     : todo
-    // })
-
   },
 
   // 'add todo' (state, action) {
