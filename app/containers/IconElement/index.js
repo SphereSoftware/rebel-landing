@@ -5,11 +5,11 @@ import * as icons from 'rebel-icons'
 
 class IconElement extends React.Component {
   render() {
-    let { iconName, dispatch } = this.props
+    let { icon: { key }, dispatch } = this.props
 
     return (
-      <li onClick={ e => dispatch(selectIcon(iconName)) }>
-        {React.createElement(icons[iconName])}
+      <li onClick={ e => dispatch(selectIcon(key)) }>
+        {React.createElement(icons[key])}
       </li>
     )
   }

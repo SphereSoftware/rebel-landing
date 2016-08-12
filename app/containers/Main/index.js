@@ -1,4 +1,5 @@
 import React from 'react'
+import _ from 'lodash'
 import { connect } from 'react-redux'
 
 import IconElement from '../IconElement'
@@ -13,9 +14,7 @@ class Main extends React.Component {
       <main>
         <h3>Rebel Icons</h3>
         <ul>
-          {Object.keys(icons).map((iconName) => {
-            return <IconElement key={iconName} iconName={iconName} />
-          })}
+          {_.map(icons, icon => <IconElement key={icon.title} icon={icon} />)}
         </ul>
       </main>
     );
@@ -24,7 +23,7 @@ class Main extends React.Component {
 
 function mapStateToProps(state){
   return {
-    icons: state.icons.icons
+    icons: state.icons
   }
 }
 

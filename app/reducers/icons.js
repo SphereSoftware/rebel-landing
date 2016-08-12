@@ -2,24 +2,18 @@ import { handleActions } from 'redux-actions'
 import * as icons from 'rebel-icons'
 import _ from 'lodash'
 
-const iconsObj = _.reduce(Object.keys(icons), (acc, key) => {
-  acc[key] = { key , selected: ('RubyIcon' == key) }
+const iconsInitialState = _.reduce(Object.keys(icons), (acc, key) => {
+  let { title } =  icons[key]
+  acc[key] = { key , title, selected: ('RubyIcon' == key)}
   return acc
 }, {})
 
-const initialState = {
-  currentIcon: 'RubyIcon',
-  icons: iconsObj,
-  color: 'red',
-  size: 32
-}
-
 export default handleActions({
   'select icon' (state, action) {
-    return {
-      ...state,
-      currentIcon: action.payload
-    }
+    return _.reduce(Object.keys(icons), (acc, key) => {
+      let { title } =  icons[key]
+      acc[key] = { key , title, selected: (action.payload == key)}
+      return acc
+    }, {})
   },
-
-}, initialState)
+}, iconsInitialState)
