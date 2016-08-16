@@ -1,7 +1,8 @@
 
-# Hand Crafted Boilerplate
+# Rebel Icons Landing page project
 
-A boilerplate of things for modern web development.
+This project aims to be front page to present all features in `rebel-icons`.
+Feel free to jump into discussion, just open an issue with your question or idea.
 
 ## Contains
 
@@ -23,42 +24,44 @@ A boilerplate of things for modern web development.
 ```
 app
 ├── actions
-├── components
 ├── constants
 ├── containers
 │   ├── App
 │   │   └── css
 │   ├── Footer
 │   ├── Header
+│   ├── IconElement
 │   └── Main
 ├── middleware
 ├── reducers
 └── store
-
 ```
 
 ## Setup
 
 ```
+$ git clone git@github.com:SphereConsultingInc/rebel-landing.git
+$ cd rebel-landing
 $ npm install
 ```
 
+Now we have to add Rebel Icons to our project
+
+```
+$ git clone git@github.com:SphereConsultingInc/rebel-icons.git node_modules/rebel-icons
+```
+
+At this point you should be good to go.
+
 ## Running
+
+To run this project for development, plz execute the following
 
 ```
 $ npm start
 ```
 
-## Build
-
-```
-$ npm run build
-```
-
-## Note
-
-You can use it as scaffold for your new creations, it contains list of popular
-things
+It will start `webpack` dev server on ()[http://localhost:3000]
 
 # License
 
