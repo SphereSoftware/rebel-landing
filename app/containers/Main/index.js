@@ -1,30 +1,53 @@
-import React from 'react'
-import { SketchPicker } from 'react-color'
-import _ from 'lodash'
-import { connect } from 'react-redux'
+import React from 'react';
+import { SketchPicker } from 'react-color';
+import _ from 'lodash';
+import { connect } from 'react-redux';
 
-import { setColor } from '../../actions'
-import IconElement from '../IconElement'
-import style from './style.css'
+import { setColor } from '../../actions';
+import IconElement from '../IconElement';
+
+import { SocialButton } from '../SocialButtonElement';
+import { RubyIcon } from 'rebel-icons';
+import styles from './styles.css';
 
 class Main extends React.Component {
 
 
   render() {
     const { icons, color, dispatch } = this.props
+    console.log(icons)
 
     return (
       <main>
-        <h3>Rebel Icons</h3>
-        <div>
-          <SketchPicker
-          color={ color }
-          onChangeComplete={ newColor => dispatch(setColor(newColor)) }
+        <div className="layout horizontal center-justified mb-40 mt-40">
+          <SocialButton
+            icon={ <RubyIcon /> }
+            label="Star"
+            count={ 1000 }
+            className="mr-40"
+          />
+          <SocialButton
+            icon={ <RubyIcon /> }
+            label="Share"
+            count={ 1000 }
+            className="mr-40"
+          />
+          <SocialButton
+            icon={ <RubyIcon /> }
+            label="Tweet"
+            count={ 1000 }
           />
         </div>
-        <ul>
-          {_.map(icons, icon => <IconElement key={icon.title} icon={icon} />)}
-        </ul>
+        <div className="container">
+          <SketchPicker
+            color={ color }
+            onChangeComplete={ newColor => dispatch(setColor(newColor)) }
+          />
+
+          <div className="layout horizontal center wrap">
+            {_.map(icons, icon => <IconElement key={icon.title} icon={icon} />)}
+          </div>
+        </div>
       </main>
     );
   }
