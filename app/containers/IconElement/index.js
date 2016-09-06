@@ -1,7 +1,7 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { selectIcon } from '../../actions'
-import * as icons from 'rebel-icons'
+import React from 'react';
+import { connect } from 'react-redux';
+import { selectIcon } from '../../actions';
+import * as icons from 'rebel-icons';
 
 class IconElement extends React.Component {
 
@@ -9,9 +9,9 @@ class IconElement extends React.Component {
     let { icon: { key }, dispatch, color } = this.props
 
     return (
-      <li onClick={ e => dispatch(selectIcon(key)) }>
+      <div className="mr-40" onClick={ e => dispatch(selectIcon(key)) }>
         {React.createElement(icons[key], {color})}
-      </li>
+      </div>
     )
   }
 }

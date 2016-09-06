@@ -1,4 +1,4 @@
-import { Component, PropTypes, Children } from 'react'
+import { Component, PropTypes, Children } from 'react';
 
 export default class IconConfigurator extends Component {
   static childContextTypes = {

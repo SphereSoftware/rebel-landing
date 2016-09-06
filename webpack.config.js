@@ -43,6 +43,10 @@ module.exports = {
         loader: 'style!css'
       },
       {
+        test: /\.(png|jpg|)$/,
+        loader: 'url-loader?limit=200000'
+      },
+      {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loaders: [
