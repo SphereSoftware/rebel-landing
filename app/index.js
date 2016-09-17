@@ -1,21 +1,17 @@
-import { Router, Route, browserHistory } from 'react-router'
-import { syncHistoryWithStore } from 'react-router-redux'
-import { Provider } from 'react-redux'
-import ReactDOM from 'react-dom'
-import React from 'react'
+import React from 'react';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import ReactDOM from 'react-dom';
 
-import App from './containers/App'
-import configure from './store'
-
-const store = configure()
-const history = syncHistoryWithStore(browserHistory, store)
+import App from './components/App';
+import Main from './components/Main';
+import InstallationGuide from './components/InstallationGuide';
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Router history={history}>
-      <Route path="/" component={App}>
-      {/* nested routes */}
-      </Route>
-    </Router>
-  </Provider>,
-  document.getElementById('root'))
+  <Router history={ browserHistory }>
+    <Route path="/" component={ App }>
+      <IndexRoute component={ Main } />
+      <Route path="installation" component={ InstallationGuide } />
+    </Route>
+  </Router>,
+  document.getElementById('root')
+);
