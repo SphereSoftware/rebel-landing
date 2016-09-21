@@ -11,11 +11,8 @@ module.exports = {
     html: './index.html',
     vendor: [
       'react',
-      'react-dom',
-      'react-redux',
-      'react-router',
-      'react-router-redux',
-      'redux'
+      'react-dom'
+      'react-router'
     ]
   },
   output: {
