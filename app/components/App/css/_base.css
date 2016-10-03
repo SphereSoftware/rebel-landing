@@ -27,9 +27,14 @@ hr {
   }
 }
 
+code {
+  white-space: pre-wrap;
+}
+
 .container {
   max-width: 970px;
   margin: 0 auto;
+  padding: 0 15px;
 }
 
 .text-center {
@@ -38,6 +43,14 @@ hr {
 
 .text-uppercase {
   text-transform: uppercase;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+  width: 100%;
 }
 
 .text-12 {

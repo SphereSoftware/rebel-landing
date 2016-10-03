@@ -24,12 +24,12 @@ export default class Footer extends Component {
             Support us:
           </div>
           <SocialButtonsSet />
-          <div className="layout horizontal center-justified mb-80">
-            <div className="mr-70 text-center">
+          <div className="layout horizontal wrap center-justified mb-80">
+            <div className="mr-70 ml-70 mt-10 mb-10 text-center">
               <img src={ AntonAvatar } alt="Anton Avatar"/>
               <div className="mt-5">Anton Shemerey</div>
             </div>
-            <div className="ml-70 text-center">
+            <div className="mr-70 ml-70 mt-10 mb-10 text-center">
               <img src={ AllaAvatar } alt="Alla Avatar"/>
               <div className="mt-5">Alla Odeianenko</div>
             </div>
@@ -41,9 +41,11 @@ export default class Footer extends Component {
             <img src={ SphereLogo } alt="Sphere Logo"/>
           </div>
         </div>
-        <div className="grey-bg heavy-border-bottom p-40 text-center text-18">
-          <div className="mb-30">Rebel Icons licensed under MIT License</div>
-          <a href="#" className="grey-text">GitHub Repo</a>
+        <div className="grey-bg heavy-border-bottom p-40">
+          <div className="container text-center text-18">
+            <div className="mb-30">Rebel Icons licensed under MIT License</div>
+            <a href="#" className="grey-text">GitHub Repo</a>
+          </div>
         </div>
       </footer>
     );
