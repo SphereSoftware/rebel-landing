@@ -1,45 +1,50 @@
-import React, { Component } from 'react';
+import React, { PropTypes, Component } from 'react';
 import { Link } from 'react-router';
 import { SketchPicker } from 'react-color';
 
 import IconElement from '../IconElement';
 import * as icons from 'rebel-icons';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { docco } from 'react-syntax-highlighter/dist/styles';
 import { SocialButtonsSet } from '../SocialButtonElement';
 import map from 'lodash/map';
+import chunk from 'lodash/chunk';
 import reduce from 'lodash/reduce';
 import styles from './styles.css';
 
 export default class Main extends Component {
   state = {
-    icon: 'RubyIcon',
-    color: '#153a55',
-    size: "180"
+    perRow: 8,
+    icon: null,
+    currentRow: null
   };
 
   render() {
-    const { icon, color, size } = this.state;
+    const { icon, perRow, currentRow } = this.state;
 
     return (
       <main>
-        <div className="text-center text-24">
-          Simple and clean SVG icon pack with the code to support
-          <br/>
-          Rails, Sprockets, Node.js, Gulp, Grunt and CDN.
-        </div>
-        <SocialButtonsSet/>
-        <div className="layout horizontal center-justified mb-80">
-          <div className="mr-40">
-            <Link to="/installation" className={ `button blue-button ${styles.button}` }>Getting Started</Link>
-            <div className="text-center text-12 mt-5">Installation guide for developers</div>
+        <div className="container">
+          <div className="text-center text-24">
+            Simple and clean SVG icon pack with the code to support
+            <br/>
+            Rails, Sprockets, Node.js, Gulp, Grunt and CDN.
           </div>
-          <div>
-            <a href="#" className={ `button dark-blue-button ${styles.button}` }>Download</a>
-            <div className="text-center text-12 mt-5">SVG, AI & Sketch for designers</div>
+          <SocialButtonsSet/>
+          <div className="layout horizontal center-justified wrap mb-80">
+            <div className="mr-20 ml-20 mt-10 mb-10">
+              <Link to="/installation" className={ `button blue-button ${styles.button}` }>Getting Started</Link>
+              <div className="text-center text-12 mt-5">Installation guide for developers</div>
+            </div>
+            <div className="mr-20 ml-20 mt-10 mb-10">
+              <a href="#" className={ `button dark-blue-button ${styles.button}` }>Download</a>
+              <div className="text-center text-12 mt-5">SVG, AI & Sketch for designers</div>
+            </div>
           </div>
         </div>
         <hr className="mb-80 mr-80 ml-80"/>
         <div className="container">
-          <div className="layout horizontal end mb-20">
+          <div className="layout horizontal wrap end mb-20">
             <div className="flex layout horizontal">
               <div className={ `${styles.toggleSize} ${styles.active} mr-10` }>S</div>
               <div className={ `${styles.toggleSize} mr-10` }>M</div>
@@ -49,61 +54,116 @@ export default class Main extends Component {
               <div className="text-30 dark-blue-text mb-20">Regular Style</div>
               <div className="text-18">Copy and paste icon names to use with your code</div>
             </div>
-            <div className="flex">
+            <div className="flex mt-20">
               <input type="search" placeholder="Search" className={styles.search}/>
             </div>
           </div>
           <hr className="dark"/>
-          <div className="layout horizontal center wrap">
-            { Object.keys(icons).map(icon =>
-                <IconElement
-                  key={ icon }
-                  icon={ icon }
-                  onClick={ () => this.setState({ icon }) }
-                />
-              )
-            }
-          </div>
-          <div className="grey-bg p-25 layout horizontal">
-            <div className="mr-30">
-              <div className={ `${styles.previewBox} p-20 mb-20 layout horizontal center-center` }>
-                { React.createElement(icons[icon], { color,  size }) }
+          { chunk(Object.keys(icons), perRow).map((row, i) =>
+              <div key={ i } className="layout horizontal wrap center">
+                { row.map(ikon =>
+                    <IconElement
+                      key={ ikon }
+                      icon={ ikon }
+                      onClick={ () => this.setState({ icon: ikon, currentRow: i }) }
+                    />
+                  )
+                }
+                <PreviewBlock active={ currentRow === i } icon={ icon } />
               </div>
-              <div className="mb-20">Color</div>
-              <SketchPicker
-                color={ color }
-                onChangeComplete={ (newColor) => this.setState({ color: newColor.hex }) }
-              />
-              <div className="mb-20 mt-20">Size</div>
-              <div className="layout horizontal center">
-                <input
-                  type="number"
-                  value={ size }
-                  onChange={ (e) => this.setState({ size: e.target.value }) }
-                />
-                <div className="ml-20">px</div>
-              </div>
-            </div>
-            <div className="flex white-bg p-20">
-              <div className="mb-20">
-                You can import  this icon with following code:
-              </div>
-              <div className="grey-bg p-20 mb-20"></div>
-              <div className="mb-20">
-                Also it's possible to include the whole icon pack from:
-              </div>
-              <div className="grey-bg p-20 mb-20"></div>
-              <div className="mb-20">
-                or import multiple icon from the same pack
-              </div>
-              <div className="grey-bg p-20 mb-50"></div>
-              <div className="layout horizontal end-justified">
-                <Link to="/installation" className="button blue-button">Read full instruction</Link>
-              </div>
-            </div>
-          </div>
+            )
+          }
         </div>
       </main>
+    );
+  }
+}
+
+const importCode = `
+import OpenIcon from 'rebel-icons/open';
+
+class Question extends React.Component {
+  render() {
+    return (
+      <div>
+        Feel free to open new thread
+        <OpenIcon />
+      </div>
+    );
+  }
+}
+`;
+const importWholePack = `import * as RebelIcons from 'rebel-icons';`;
+const importMultipleIcons = `import { CancelIcon, ChatIcon, CheckIcon } from 'rabel-icons';`;
+
+class PreviewBlock extends Component {
+  static propTypes = {
+    active: PropTypes.bool,
+    icon: PropTypes.string
+  };
+
+  state = {
+    color: '#153a55',
+    size: "180"
+  };
+
+  render() {
+    const { active, icon } = this.props;
+    const { color, size } = this.state;
+
+    if (!active || !icon) return null;
+
+    return (
+      <div className="grey-bg p-25 layout horizontal wrap">
+        <div className="mr-30">
+          <div className={ `${styles.previewBox} p-20 mb-20 layout horizontal center-center` }>
+            { React.createElement(icons[icon], { color,  size }) }
+          </div>
+          <div className="mb-20">Color</div>
+          <SketchPicker
+            color={ color }
+            onChangeComplete={ (newColor) => this.setState({ color: newColor.hex }) }
+          />
+          <div className="mb-20 mt-20">Size</div>
+          <div className="layout horizontal center mb-20">
+            <input
+              type="number"
+              value={ size }
+              onChange={ (e) => this.setState({ size: e.target.value }) }
+            />
+            <div className="ml-20">px</div>
+          </div>
+        </div>
+        <div className="flex white-bg p-20">
+          <div className="mb-20">
+            You can import this icon with following code:
+          </div>
+          <div className="grey-bg p-20 mb-20">
+            <SyntaxHighlighter language='javascript' style={ docco }>
+              { importCode }
+            </SyntaxHighlighter>
+          </div>
+          <div className="mb-20">
+            Also it's possible to include the whole icon pack from:
+          </div>
+          <div className="grey-bg p-20 mb-20">
+            <SyntaxHighlighter language='javascript' style={ docco }>
+              { importWholePack }
+            </SyntaxHighlighter>
+          </div>
+          <div className="mb-20">
+            or import multiple icon from the same pack
+          </div>
+          <div className="grey-bg p-20 mb-50">
+            <SyntaxHighlighter language='javascript' style={ docco }>
+              { importMultipleIcons }
+            </SyntaxHighlighter>
+          </div>
+          <div className="layout horizontal end-justified">
+            <Link to="/installation" className="button blue-button">Read full instruction</Link>
+          </div>
+        </div>
+      </div>
     );
   }
 }

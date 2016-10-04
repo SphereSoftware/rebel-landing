@@ -7,8 +7,10 @@ export default class Header extends React.Component {
     return (
       <header className="heavy-border-top">
         <a href="#" className={ `${styles.forkRibbon} text-center` }>Fork it on GitHub</a>
-        <div className="layout horizontal center-center mb-40">
-          <img src={ Logo } alt="logo" className={ styles.logo }/>
+        <div className="container">
+          <div className="layout horizontal center-center mb-40">
+            <img src={ Logo } alt="logo" className={ styles.logo }/>
+          </div>
         </div>
       </header>
     );

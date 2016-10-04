@@ -54,6 +54,7 @@
   "dependencies": {
     "lodash": "^4.15.0",
     "react-color": "^2.2.2",
+    "react-syntax-highlighter": "^2.8.0",
     "url-loader": "^0.5.7"
   }
 }
