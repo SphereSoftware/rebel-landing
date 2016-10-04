@@ -1,25 +1,25 @@
 import React, { Component, PropTypes } from 'react';
 import SocialButton from './SocialButton';
-import { RubyIcon } from 'rebel-icons';
+import { GitHubIcon, FacebookIcon, TwitterIcon } from 'rebel-icons';
 
 export default class SocialButtonsSet extends Component {
   render() {
     return (
       <div className="layout horizontal center-justified wrap mb-80 mt-40">
         <SocialButton
-          icon={ <RubyIcon /> }
+          icon={ <GitHubIcon size="16" color="#000" /> }
           label="Star"
           count={ 1000 }
           className="mr-20 ml-20 mt-10 mb-10"
         />
         <SocialButton
-          icon={ <RubyIcon /> }
+          icon={ <FacebookIcon size="16" /> }
           label="Share"
           count={ 1000 }
           className="mr-20 ml-20 mt-10 mb-10"
         />
         <SocialButton
-          icon={ <RubyIcon /> }
+          icon={ <TwitterIcon size="16" color="#2496d9" /> }
           label="Tweet"
           count={ 1000 }
           className="mr-20 ml-20 mt-10 mb-10"

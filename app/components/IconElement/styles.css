@@ -1,5 +1,5 @@
 .item {
-  width: 12.5%;
+  width: calc(100% / 8);
 }
 
 @media only screen and (max-width: 970px) {
