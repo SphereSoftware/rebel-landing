@@ -10,17 +10,25 @@ import { SocialButtonsSet } from '../SocialButtonElement';
 import map from 'lodash/map';
 import chunk from 'lodash/chunk';
 import reduce from 'lodash/reduce';
+import CN from 'classnames';
 import styles from './styles.css';
+
+const SIZES =[
+  ['S', 20],
+  ['M', 30],
+  ['L', 50]
+];
 
 export default class Main extends Component {
   state = {
     perRow: 8,
     icon: null,
-    currentRow: null
+    currentRow: null,
+    size: 30
   };
 
   render() {
-    const { icon, perRow, currentRow } = this.state;
+    const { icon, perRow, currentRow, size } = this.state;
 
     return (
       <main>
@@ -46,16 +54,23 @@ export default class Main extends Component {
         <div className="container">
           <div className="layout horizontal wrap end mb-20">
             <div className="flex layout horizontal">
-              <div className={ `${styles.toggleSize} ${styles.active} mr-10` }>S</div>
-              <div className={ `${styles.toggleSize} mr-10` }>M</div>
-              <div className={ styles.toggleSize }>L</div>
+              { SIZES.map(([l, siz]) =>
+                  <div
+                    key={ l }
+                    className={ CN('mr-10', styles.toggleSize, { [styles.active]: size === siz } ) }
+                    onClick={ () => this.setState({ size: siz }) }
+                  >
+                    { l }
+                  </div>
+                )
+              }
             </div>
             <div className="flex two text-center mr-20 ml-20">
               <div className="text-30 dark-blue-text mb-20">Regular Style</div>
               <div className="text-18">Copy and paste icon names to use with your code</div>
             </div>
             <div className="flex mt-20">
-              <input type="search" placeholder="Search" className={styles.search}/>
+              <input type="search" placeholder="Search" className={ styles.search }/>
             </div>
           </div>
           <hr className="dark"/>
@@ -65,6 +80,7 @@ export default class Main extends Component {
                     <IconElement
                       key={ ikon }
                       icon={ ikon }
+                      size={ size }
                       onClick={ () => this.setState({ icon: ikon, currentRow: i }) }
                     />
                   )
