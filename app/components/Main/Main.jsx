@@ -7,10 +7,12 @@ import * as icons from 'rebel-icons';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/styles';
 import { SocialButtonsSet } from '../SocialButtonElement';
+import _ from 'lodash';
 import map from 'lodash/map';
 import chunk from 'lodash/chunk';
 import reduce from 'lodash/reduce';
 import CN from 'classnames';
+import DebounceInput from 'react-debounce-input';
 import styles from './styles.css';
 
 const SIZES =[
@@ -24,8 +26,21 @@ export default class Main extends Component {
     perRow: 8,
     icon: null,
     currentRow: null,
+    search: '',
     size: 30
   };
+
+  filteredIcons() {
+    const reg = new RegExp(
+      this.state.search.toLowerCase()
+      .split("")
+      .reduce((a,b) => `${a}[^${b}]*${b}`, '')
+    )
+
+    return Object.keys(icons)
+      .filter((item) => reg.test(item.toLowerCase())
+    )
+  }
 
   render() {
     const { icon, perRow, currentRow, size } = this.state;
@@ -70,11 +85,17 @@ export default class Main extends Component {
               <div className="text-18">Copy and paste icon names to use with your code</div>
             </div>
             <div className="flex mt-20">
-              <input type="search" placeholder="Search" className={ styles.search }/>
+              <DebounceInput
+                minLength={2}
+                debounceTimeout={300}
+                type="search"
+                placeholder="Search"
+                className={ styles.search }
+                onChange={event => this.setState({search: event.target.value})} />
             </div>
           </div>
           <hr className="dark"/>
-          { chunk(Object.keys(icons), perRow).map((row, i) =>
+          { chunk(::this.filteredIcons(), perRow).map((row, i) =>
               <div key={ i } className="layout horizontal wrap center">
                 { row.map(ikon =>
                     <IconElement
@@ -95,23 +116,6 @@ export default class Main extends Component {
   }
 }
 
-const importCode = `
-import OpenIcon from 'rebel-icons/open';
-
-class Question extends React.Component {
-  render() {
-    return (
-      <div>
-        Feel free to open new thread
-        <OpenIcon />
-      </div>
-    );
-  }
-}
-`;
-const importWholePack = `import * as RebelIcons from 'rebel-icons';`;
-const importMultipleIcons = `import { CancelIcon, ChatIcon, CheckIcon } from 'rabel-icons';`;
-
 class PreviewBlock extends Component {
   static propTypes = {
     active: PropTypes.bool,
@@ -129,6 +133,24 @@ class PreviewBlock extends Component {
 
     if (!active || !icon) return null;
 
+    const importCode = `
+    import ${icon} from 'rebel-icons/${icon}';
+
+    class ${icon} extends React.Component {
+      render() {
+        return (
+          <div>
+            Open new Icon
+            <${icon} size={${size}} color="${color}"/>
+          </div>
+        );
+      }
+    }
+    `;
+
+    const importWholePack = `import * as RebelIcons from 'rebel-icons';`;
+    const importMultipleIcons = `import { ${icon}, CheckIcon } from 'rabel-icons';`;
+
     return (
       <div className="grey-bg p-25 layout horizontal wrap">
         <div className="mr-30">
@@ -140,14 +162,18 @@ class PreviewBlock extends Component {
             color={ color }
             onChangeComplete={ (newColor) => this.setState({ color: newColor.hex }) }
           />
-          <div className="mb-20 mt-20">Size</div>
+          <div className="mt-20 mr-20">Size {this.state.size} px</div>
           <div className="layout horizontal center mb-20">
             <input
-              type="number"
+              type="range"
+              min="16"
+              value="32"
+              max="250"
+              step="4"
+              style={{width: "100%"}}
               value={ size }
               onChange={ (e) => this.setState({ size: e.target.value }) }
             />
-            <div className="ml-20">px</div>
           </div>
         </div>
         <div className="flex white-bg p-20">

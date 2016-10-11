@@ -53,9 +53,12 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "lodash": "^4.15.0",
+    "lodash": "^4.16.4",
+    "react": "^15.3.2",
     "react-color": "^2.2.2",
+    "react-debounce-input": "^2.4.0",
     "react-syntax-highlighter": "^2.8.0",
+    "rebel-icons": "git+https://github.com/SphereConsultingInc/rebel-icons.git",
     "url-loader": "^0.5.7"
   }
 }
