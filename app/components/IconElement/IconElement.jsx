@@ -20,7 +20,7 @@ export default class IconElement extends Component {
     return (
       <div className={ `mt-20 mb-20 text-center ${styles.item}` } onClick={ onClick }>
         { React.createElement(icons[icon], { size }) }
-        <div className="mt-10 p-10 ellipsis">{ (new icons[icon]).title }</div>
+        <div className="mt-10 p-10 ellipsis">{ icon.replace(/icon/i, '') }</div>
       </div>
     )
   }
