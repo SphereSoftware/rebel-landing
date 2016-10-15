@@ -1,13 +1,12 @@
 import React, { PropTypes, Component } from 'react';
 import { Link } from 'react-router';
-import { SketchPicker } from 'react-color';
+import SketchPicker from 'react-color/lib/components/sketch/Sketch';
 
 import IconElement from '../IconElement';
 import * as icons from 'rebel-icons';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { docco } from 'react-syntax-highlighter/dist/styles';
-import { SocialButtonsSet } from '../SocialButtonElement';
-import _ from 'lodash';
+import tomorrow from 'react-syntax-highlighter/dist/styles/tomorrow';
+import SocialButtonsSet from '../SocialButtonElement';
 import map from 'lodash/map';
 import chunk from 'lodash/chunk';
 import reduce from 'lodash/reduce';
@@ -35,7 +34,7 @@ export default class Main extends Component {
       this.state.search.toLowerCase()
       .split("")
       .reduce((a,b) => `${a}[^${b}]*${b}`, '')
-    )
+    );
 
     return Object.keys(icons)
       .filter((item) => reg.test(item.toLowerCase())
@@ -181,7 +180,7 @@ class PreviewBlock extends Component {
             You can import this icon with following code:
           </div>
           <div className="grey-bg p-20 mb-20">
-            <SyntaxHighlighter language='javascript' style={ docco }>
+            <SyntaxHighlighter language='javascript' style={ tomorrow }>
               { importCode }
             </SyntaxHighlighter>
           </div>
@@ -189,7 +188,7 @@ class PreviewBlock extends Component {
             Also it's possible to include the whole icon pack from:
           </div>
           <div className="grey-bg p-20 mb-20">
-            <SyntaxHighlighter language='javascript' style={ docco }>
+            <SyntaxHighlighter language='javascript' style={ tomorrow }>
               { importWholePack }
             </SyntaxHighlighter>
           </div>
@@ -197,7 +196,7 @@ class PreviewBlock extends Component {
             or import multiple icon from the same pack
           </div>
           <div className="grey-bg p-20 mb-50">
-            <SyntaxHighlighter language='javascript' style={ docco }>
+            <SyntaxHighlighter language='javascript' style={ tomorrow }>
               { importMultipleIcons }
             </SyntaxHighlighter>
           </div>

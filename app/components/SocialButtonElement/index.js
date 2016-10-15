@@ -1,1 +1,1 @@
-export SocialButtonsSet from './SocialButtonsSet';
+export default from './SocialButtonsSet';

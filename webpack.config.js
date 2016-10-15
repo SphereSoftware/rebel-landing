@@ -1,42 +1,47 @@
-var rucksack = require('rucksack-css')
-var precss = require('precss')
-var lost = require('lost')
-var webpack = require('webpack')
-var path = require('path')
-var plugins = [
-  new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
-  new webpack.DefinePlugin({
-    'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development') }
-  })
-]
+const path = require('path');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const autoprefixer = require('autoprefixer');
+const precss = require('precss');
+const discardComments = require('postcss-discard-comments');
+const dashboardPlugin = require('webpack-dashboard/plugin');
 
-if(process.env.NODE_ENV === 'production') {
-  plugins.push(
+const isProd = process.env.NODE_ENV === 'production';
+
+const PLUGINS = [
+  new ExtractTextPlugin('app.css', { allChunks: true, disable: !isProd }),
+  new webpack.DefinePlugin({
+    'process.env.REACT_SYNTAX_HIGHLIGHTER_LIGHT_BUILD': true,
+    'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV) }
+  }),
+  new dashboardPlugin()
+];
+
+if (isProd) {
+  PLUGINS.push(
     new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: true }
+      beautify: false,
+      comments: false,
+      compress: {
+        warnings: false,
+        drop_console: true
+      }
     })
   )
 }
 
 module.exports = {
+  devtool: isProd ? undefined : 'cheap-module-eval-source-map',
   context: path.join(__dirname, './app'),
   entry: {
     jsx: './index.js',
-    html: './index.html',
-    vendor: [
-      'lodash',
-      'react-color',
-      'react-debounce-input',
-      'react-syntax-highlighter',
-      'react',
-      'react-dom',
-      'react-router',
-    ]
+    html: './index.html'
   },
   output: {
     path: path.join(__dirname, './docs'),
-    filename: 'bundle.js',
+    filename: 'app.js'
   },
+  plugins: PLUGINS,
   module: {
     loaders: [
       {
@@ -44,13 +49,14 @@ module.exports = {
         loader: 'file?name=[name].[ext]'
       },
       {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loaders: ['babel-loader']
+      },
+      {
         test: /\.css$/,
         include: /app/,
-        loaders: [
-          'style-loader',
-          'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[local]___[hash:base64:5]',
-          'postcss-loader'
-        ]
+        loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[local]_[hash:base64:5]!postcss?sourceMap')
       },
       {
         test: /\.css$/,
@@ -60,33 +66,19 @@ module.exports = {
       {
         test: /\.(png|jpg|)$/,
         loader: 'url-loader?limit=200000'
-      },
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        loaders: [
-          'babel-loader'
-        ]
-      },
-    ],
+      }
+    ]
   },
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
-  postcss: [
-    precss({
-      /* options */
-    }),
-    lost({
-      /* options */
-    }),
-    rucksack({
-      autoprefixer: true
-    })
-  ],
-  plugins: plugins,
+  postcss: function() {
+    return [
+      autoprefixer, precss, discardComments({removeAll: true})
+    ];
+  },
   devServer: {
     contentBase: './app',
     hot: true
   }
-}
+};
