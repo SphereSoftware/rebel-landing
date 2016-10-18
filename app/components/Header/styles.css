@@ -10,7 +10,7 @@
   background: #3495cc;
   font-size: 16px;
   color: #fff;
-  box-shadow: 0 2px 5px 1px rgba(21,58,85,0.8);
+  box-shadow: 0 2px 5px 1px rgba(21, 58, 85, .8);
   padding: 5px 0;
   transform: rotate(35deg);
 }

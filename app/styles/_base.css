@@ -136,7 +136,8 @@ code {
   border: 1px solid;
   border-radius: 5px;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     text-decoration: none;
     outline: none;
   }
