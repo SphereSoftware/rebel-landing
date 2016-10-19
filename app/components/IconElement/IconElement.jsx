@@ -18,7 +18,7 @@ export default class IconElement extends Component {
   render() {
     const { icon, onClick, size } = this.props;
     return (
-      <div className={ `mt-20 mb-20 text-center ${styles.item}` } onClick={ onClick }>
+      <div className={ `mt-20 mb-20 pointer text-center ${styles.item}` } onClick={ onClick }>
         { React.createElement(icons[icon], { size }) }
         <div className="mt-10 p-10 ellipsis">{ icon.replace(/icon/i, '') }</div>
       </div>

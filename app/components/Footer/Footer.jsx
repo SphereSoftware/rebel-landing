@@ -5,6 +5,9 @@ import AntonAvatar from './images/anton-avatar.png';
 import AllaAvatar from './images/alla-avatar.png';
 import SphereLogo from './images/sphere-logo.png';
 
+const iconsUrl = 'https://github.com/SphereSoftware/rebel-icons/'
+const MITUrl = iconsUrl + '/blob/master/LICENSE.md'
+
 export default function Footer() {
   return (
     <footer>
@@ -12,7 +15,7 @@ export default function Footer() {
         <hr className="dark mt-50 mb-80"/>
         <div className="text-center text-30 dark-blue-text mb-30">Free & Open</div>
         <div className="text-center text-18 mb-30">
-          Rebel Icons are completely free and licensed under MIT. We use Rebel Icons in almost all of <br/>
+          <a href={iconsUrl} className="grey-text">Rebel Icons</a> are completely free and licensed under <a href={MITUrl} className="grey-text">MIT</a>. We use Rebel Icons in almost all of <br/>
           our new and upcoming websites — and we would love you to do that as well. <br/>
           Contributions are welcome!
         </div>
@@ -37,13 +40,17 @@ export default function Footer() {
           Sponsored by:
         </div>
         <div className="text-center mb-80">
-          <img src={ SphereLogo } alt="Sphere Logo"/>
+          <a href="https://sphereinc.com/">
+            <img src={ SphereLogo } alt="Sphere Logo"/>
+          </a>
         </div>
       </div>
       <div className="grey-bg heavy-border-bottom p-40">
         <div className="container text-center text-18">
-          <div className="mb-30">Rebel Icons licensed under MIT License</div>
-          <a href="#" className="grey-text">GitHub Repo</a>
+          <div className="mb-30">
+            <a href={iconsUrl} className="grey-text">Rebel Icons</a> licensed under <a href={MITUrl} className="grey-text">MIT</a> License
+          </div>
+          <a href={iconsUrl} className="grey-text">GitHub Repo</a>
         </div>
       </div>
     </footer>

@@ -48,9 +48,7 @@ export default class Main extends Component {
       <main>
         <div className="container">
           <div className="text-center text-24">
-            Simple and clean SVG icon pack with the code to support
-            <br/>
-            Rails, Sprockets, Node.js, Gulp, Grunt and CDN.
+            Simple and clean React SVG icon pack.
           </div>
           <SocialButtonsSet/>
           <div className="layout horizontal center-justified wrap mb-80">
@@ -59,7 +57,7 @@ export default class Main extends Component {
               <div className="text-center text-12 mt-5">Installation guide for developers</div>
             </div>
             <div className="mr-20 ml-20 mt-10 mb-10">
-              <a href="#" className={ `button dark-blue-button ${styles.button}` }>Download</a>
+              <a href="https://github.com/SphereSoftware/rebel-icons/tree/master/icons" className={ `button dark-blue-button ${styles.button}` }>Download</a>
               <div className="text-center text-12 mt-5">SVG, AI & Sketch for designers</div>
             </div>
           </div>

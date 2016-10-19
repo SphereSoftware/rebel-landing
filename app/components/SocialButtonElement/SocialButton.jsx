@@ -1,6 +1,18 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './styles.css';
 
+export const GithubButton = (props) => {
+    return (
+      <iframe
+        src="https://ghbtns.com/github-btn.html?user=SphereSoftware&repo=rebel-icons&type=star&count=true&size=large"
+        frameBorder="0"
+        scrolling="0"
+        width="90px"
+        height="30px"
+      />
+    )
+}
+
 export default class SocialButton extends Component {
   static PropTypes = {
     icon: PropTypes.node,

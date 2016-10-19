@@ -122,6 +122,10 @@ code {
   border-bottom: 15px solid $dark-blue;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .button {
   display: flex;
   flex-direction: row;
