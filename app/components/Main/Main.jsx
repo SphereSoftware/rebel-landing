@@ -1,5 +1,4 @@
 import React, { PropTypes, Component } from 'react';
-import { Link } from 'react-router';
 import SketchPicker from 'react-color/lib/components/sketch/Sketch';
 
 import IconElement from '../IconElement';
@@ -53,7 +52,7 @@ export default class Main extends Component {
           <SocialButtonsSet/>
           <div className="layout horizontal center-justified wrap mb-80">
             <div className="mr-20 ml-20 mt-10 mb-10">
-              <Link to="/installation" className={ `button blue-button ${styles.button}` }>Getting Started</Link>
+              <a href="https://github.com/SphereSoftware/rebel-icons#rebel-icons" className={ `button blue-button ${styles.button}` }>Getting Started</a>
               <div className="text-center text-12 mt-5">Installation guide for developers</div>
             </div>
             <div className="mr-20 ml-20 mt-10 mb-10">
@@ -199,7 +198,7 @@ class PreviewBlock extends Component {
             </SyntaxHighlighter>
           </div>
           <div className="layout horizontal end-justified">
-            <Link to="/installation" className="button blue-button">Read full instruction</Link>
+            <a href="https://github.com/SphereSoftware/rebel-icons#rebel-icons" className="button blue-button">Read full instruction</a>
           </div>
         </div>
       </div>
