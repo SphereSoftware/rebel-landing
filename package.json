@@ -29,7 +29,8 @@
     "react-color": "^2.2.2",
     "react-debounce-input": "^2.4.0",
     "react-dom": "^15.3.2",
-    "react-syntax-highlighter": "^2.8.0"
+    "react-syntax-highlighter": "^2.8.0",
+    "rebel-icons": "^0.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.5.2",
