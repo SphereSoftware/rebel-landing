@@ -2,6 +2,15 @@
   margin-top: 110px;
 }
 
+.forkRibbonContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 215px;
+  height: 215px;
+  overflow: hidden;
+}
+
 .forkRibbon {
   position: absolute;
   top: 50px;

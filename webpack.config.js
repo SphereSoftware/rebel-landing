@@ -9,7 +9,7 @@ const dashboardPlugin = require('webpack-dashboard/plugin');
 const isProd = process.env.NODE_ENV === 'production';
 
 const PLUGINS = [
-  new ExtractTextPlugin('app.css', { allChunks: true, disable: !isProd }),
+  new ExtractTextPlugin('app.css', { allChunks: true }),
   new webpack.DefinePlugin({
     'process.env.REACT_SYNTAX_HIGHLIGHTER_LIGHT_BUILD': true,
     'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV) }
@@ -31,7 +31,7 @@ if (isProd) {
 }
 
 module.exports = {
-  devtool: isProd ? undefined : 'cheap-module-eval-source-map',
+  devtool: isProd ? undefined : 'inline-source-map',
   context: path.join(__dirname, './app'),
   entry: {
     jsx: './index.js',
@@ -70,7 +70,8 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
+    modulesDirectories: ['node_modules', 'app/components']
   },
   postcss: function() {
     return [
