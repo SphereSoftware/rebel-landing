@@ -22,7 +22,6 @@ export default class Grid extends Component {
   state = {
     perRow: 8,
     icon: null,
-    currentRow: null,
     search: '',
     size: 30
   };
@@ -53,7 +52,7 @@ export default class Grid extends Component {
   };
 
   render() {
-    const { icon, perRow, currentRow, size } = this.state;
+    const { icon, perRow, size } = this.state;
 
     return (
       <main>
@@ -104,16 +103,17 @@ export default class Grid extends Component {
           { chunk(this.filteredIcons, perRow).map((row, i) =>
               <div key={ i } className="layout horizontal center wrap justified">
                 { row.map(icon =>
-                    <div key={ icon } className={ `mt-20 mb-20 pointer text-center ${styles.item}` } onClick={ () => this.setState({ icon, currentRow: i }) }>
-                      <Icon
-                        icon={ icon }
-                        size={ size }
-                      />
+                    <div
+                      key={ icon }
+                      className={ CN('mt-20 mb-20 pointer text-center', styles.item, { [styles.selected]: this.state.icon === icon }) }
+                      onClick={ () => this.setState({ icon }) }
+                    >
+                      <Icon { ...{icon, size} } />
                       <div className="mt-10 p-10 ellipsis">{ RebelLib[icon] }</div>
                     </div>
                   )
                 }
-                <Preview active={ currentRow === i } icon={ icon } />
+                <Preview active={ row.includes(this.state.icon) } icon={ icon } />
               </div>
             )
           }

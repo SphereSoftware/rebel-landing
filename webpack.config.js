@@ -45,7 +45,7 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.html$/,
+        test: /\.(html|svg)$/,
         loader: 'file?name=[name].[ext]'
       },
       {
@@ -64,7 +64,7 @@ module.exports = {
         loader: 'style!css'
       },
       {
-        test: /\.(png|jpg|)$/,
+        test: /\.(png|jpg)$/,
         loader: 'url-loader?limit=200000'
       }
     ]
@@ -75,7 +75,7 @@ module.exports = {
   },
   postcss: function() {
     return [
-      autoprefixer, precss, discardComments({removeAll: true})
+      autoprefixer, precss, discardComments({ removeAll: true })
     ];
   },
   devServer: {

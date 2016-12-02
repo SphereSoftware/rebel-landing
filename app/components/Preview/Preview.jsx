@@ -24,17 +24,15 @@ export default class Preview extends Component {
 
     if (!active || !icon) return null;
 
-    const importCode = `import Icon from 'rebel-icons';\n\n<Icon icon="${icon}" size={ ${size} } color="${color}" />`;
-
-    const importWholePack = `import * as RebelIcons from 'rebel-icons';`;
-    const importMultipleIcons = `import { ${icon}, CheckIcon } from 'rabel-icons';`;
-
     return (
       <div className="grey-bg p-25 flex layout horizontal wrap">
         <div className="mr-30">
           <div className="layout horizontal center-justified wrap">
-            <div className={ `${styles.previewBox} layout horizontal center-center` }>
-              <Icon icon={ icon } { ...{ color,  size } }/>
+            <div className="mr-30">
+              <div className="mb-20">Preview</div>
+              <div className={ `${styles.previewBox} layout horizontal center-center` }>
+                <Icon icon={ icon } { ...{ color,  size } }/>
+              </div>
             </div>
             <div>
               <div className="mb-20">Color</div>
@@ -44,12 +42,12 @@ export default class Preview extends Component {
               />
             </div>
           </div>
-          <div className="mt-20 mr-20">Size { size } px</div>
+          <div className="mt-20 mr-20">Size: { size } px</div>
           <div className="layout horizontal mb-20">
             <input
               type="range"
               min="16"
-              max="200"
+              max="240"
               step="4"
               className="flex"
               value={ size }
@@ -59,16 +57,14 @@ export default class Preview extends Component {
         </div>
 
         <div className="flex white-bg p-20">
-          <div className="mb-20">
-            You can use this icon with following code:
-          </div>
+          <div className="mb-20">You can use this icon with following code:</div>
           <div className="grey-bg p-20 mb-20">
             <SyntaxHighlighter style={ tomorrow }>
-              { importCode }
+              { `import Icon from 'rebel-icons';\n\n<Icon icon="${icon}" size={ ${size} } color="${color}" />` }
             </SyntaxHighlighter>
           </div>
-          <div className="layout horizontal end-justified">
-            <a href="https://github.com/SphereSoftware/rebel-icons#rebel-icons" className="button blue-button">Read full instruction</a>
+          <div className="layout horizontal center-justified">
+            <a href="https://github.com/SphereSoftware/rebel-icons#usage" className="button blue-button">Read full instruction</a>
           </div>
         </div>
       </div>
