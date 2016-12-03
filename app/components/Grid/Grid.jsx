@@ -3,6 +3,7 @@ import Icon from 'rebel-icons';
 import RebelLib from 'rebel-icons/lib/rebel-lib';
 import SocialButtonsSet from 'SocialButtonElement';
 import chunk from 'lodash/chunk';
+import range from 'lodash/range';
 import CN from 'classnames';
 import DebounceInput from 'react-debounce-input';
 import Preview from 'Preview';
@@ -70,7 +71,7 @@ export default class Grid extends Component {
             </div>
           </div>
         </div>
-        <hr className="mb-80 mr-80 ml-80"/>
+        <hr className="mb-80 mr-70 ml-70"/>
         <div ref="container" className="container">
           <div className={ `layout wrap end mb-20 ${styles.header}` }>
             <div className="flex layout horizontal center-center">
@@ -100,7 +101,7 @@ export default class Grid extends Component {
             </div>
           </div>
           <hr className="dark"/>
-          { chunk(this.filteredIcons, perRow).map((row, i) =>
+          { chunk(this.filteredIcons, perRow).map((row, i, arr) =>
               <div key={ i } className="layout horizontal center wrap justified">
                 { row.map(icon =>
                     <div
@@ -113,6 +114,9 @@ export default class Grid extends Component {
                     </div>
                   )
                 }
+                { arr.length - 1 === i &&
+                  range(row.length - perRow).map(i => <div key={ i } className={ styles.item } /> )
+                }
                 <Preview active={ row.includes(this.state.icon) } icon={ icon } />
               </div>
             )
@@ -122,4 +126,3 @@ export default class Grid extends Component {
     );
   }
 }
-

@@ -5,11 +5,46 @@
   background-position: 0 0, 10px 10px;
   background-size: 21px 21px;
   box-shadow: rgba(0, 0, 0, .14902) 0 8px 16px;
-  width: 250px;
-  height: 250px;
+  width: 300px;
+  height: 300px;
   overflow: auto;
 }
 
+.container {
+  display: flex;
+}
+
+.space {
+  margin-right: 30px;
+}
+
 pre {
+  margin: 0;
   background: transparent !important; /*fix for override SyntaxHighlighter styles*/
+}
+
+.sizeContainer {
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+:global(.sketch-picker) {
+  height: 290px;
+}
+
+@media only screen and (max-width: 630px) {
+  .container {
+    display: block;
+    > div {
+      width: 220px;
+      margin: 0 auto 20px;
+    }
+  }
+  .space {
+    margin-right: 0;
+  }
+  .previewBox {
+    width: 220px;
+    height: 220px;
+  }
 }

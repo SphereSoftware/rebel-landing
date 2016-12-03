@@ -10,7 +10,8 @@ export default function Header() {
       <div className={ styles.forkRibbonContainer }>
         <a
           href={iconsUrl}
-          className={ `${styles.forkRibbon} text-center` }>
+          className={ `${styles.forkRibbon} text-center` }
+        >
           Fork it on GitHub
         </a>
       </div>

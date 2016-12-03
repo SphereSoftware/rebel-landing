@@ -15,7 +15,7 @@ export default class Preview extends Component {
 
   state = {
     color: '#153a55',
-    size: "180"
+    size: '160'
   };
 
   render() {
@@ -25,29 +25,30 @@ export default class Preview extends Component {
     if (!active || !icon) return null;
 
     return (
-      <div className="grey-bg p-25 flex layout horizontal wrap">
-        <div className="mr-30">
-          <div className="layout horizontal center-justified wrap">
-            <div className="mr-30">
-              <div className="mb-20">Preview</div>
-              <div className={ `${styles.previewBox} layout horizontal center-center` }>
-                <Icon icon={ icon } { ...{ color,  size } }/>
-              </div>
-            </div>
-            <div>
-              <div className="mb-20">Color</div>
-              <SketchPicker
-                color={ color }
-                onChange={ (newColor) => this.setState({ color: newColor.hex }) }
-              />
+      <div className="grey-bg p-25 flex">
+        <div className={ `layout center-justified wrap ${styles.container}` }>
+          <div className={ `mb-20 ${styles.space}` }>
+            <div className="mb-20">Preview</div>
+            <div className={ `${styles.previewBox} layout horizontal center-center` }>
+              <Icon icon={ icon } { ...{ color,  size } }/>
             </div>
           </div>
-          <div className="mt-20 mr-20">Size: { size } px</div>
+          <div className="mb-20">
+            <div className="mb-20">Color</div>
+            <SketchPicker
+              className={ styles.picker }
+              color={ color }
+              onChange={ (newColor) => this.setState({ color: newColor.hex }) }
+            />
+          </div>
+        </div>
+        <div className={ styles.sizeContainer }>
+          <div>Size: { size }px</div>
           <div className="layout horizontal mb-20">
             <input
               type="range"
               min="16"
-              max="240"
+              max="200"
               step="4"
               className="flex"
               value={ size }
@@ -55,7 +56,6 @@ export default class Preview extends Component {
             />
           </div>
         </div>
-
         <div className="flex white-bg p-20">
           <div className="mb-20">You can use this icon with following code:</div>
           <div className="grey-bg p-20 mb-20">

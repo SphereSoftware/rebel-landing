@@ -6,7 +6,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/SphereConsultingInc/rebel-landing.git"
+    "url": "git+ssh://git@bitbucket.org/SphereSoftware/rebel-landing.git"
   },
   "keywords": [
     "react",
@@ -30,7 +30,7 @@
     "react-debounce-input": "^2.4.2",
     "react-dom": "^15.4.1",
     "react-syntax-highlighter": "^3.0.0",
-    "rebel-icons": "^2.0.0"
+    "rebel-icons": "^2.0.2"
   },
   "devDependencies": {
     "babel-core": "^6.18.2",

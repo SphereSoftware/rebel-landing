@@ -10,8 +10,7 @@ import lowlight from 'lowlight/lib/core';
 
 lowlight.registerLanguage('javascript', js);
 const root = document.getElementById('root');
-root.classList.add('show');
 
 ReactDOM.render(<App/>, root);
-// document.querySelector('.preloader').remove();
-console.log('removed');
+root.classList.add('loaded');
+document.querySelector('.preloader').remove();

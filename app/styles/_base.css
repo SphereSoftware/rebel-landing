@@ -7,12 +7,12 @@
   overflow-x: hidden;
 }
 
-#root  {
+#root {
   background-color: #fff;
   opacity: 0;
   transition: opacity .5s;
   transition-timing-function: ease-out;
-  &.show {
+  &.loaded {
     opacity: 1;
   }
 }
@@ -29,10 +29,10 @@
 
 .pulse {
   position: absolute;
-  top: -16px;
-  left: -16px;
-  width: 160px;
-  height: 160px;
+  top: -26px;
+  left: -26px;
+  width: 180px;
+  height: 180px;
   background-color: #46708a;
   border-radius: 100%;
   animation: pulse 2.5s infinite cubic-bezier(.4, 0, .27, 1);;
@@ -126,25 +126,88 @@ code {
   background: $grey-bg;
 }
 
-@for $i from 0 to 80 by 5 {
-  .m-$i {
-    margin: $(i)px;
-  }
-  .mt-$i {
-    margin-top: $(i)px;
-  }
-  .mb-$i {
-    margin-bottom: $(i)px;
-  }
-  .mr-$i {
-    margin-right: $(i)px;
-  }
-  .ml-$i {
-    margin-left: $(i)px;
-  }
-  .p-$i {
-    padding: $(i)px;
-  }
+.mt-5 {
+  margin-top: 5px;
+}
+
+.mr-5 {
+  margin-right: 5px;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.mr-10 {
+  margin-right: 10px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mr-20 {
+  margin-right: 20px;
+}
+
+.ml-20 {
+  margin-left: 20px;
+}
+
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+.mt-40 {
+  margin-top: 40px;
+}
+
+.mb-40 {
+  margin-bottom: 40px;
+}
+
+.mt-50 {
+  margin-top: 50px;
+}
+
+.mb-50 {
+  margin-bottom: 50px;
+}
+
+.ml-70 {
+  margin-left: 70px;
+}
+
+.mr-70 {
+  margin-right: 70px;
+}
+
+.mb-80 {
+  margin-bottom: 80px;
+}
+
+.p-10 {
+  padding: 10px;
+}
+
+.p-20 {
+  padding: 20px;
+}
+
+.p-25 {
+  padding: 25px;
+}
+
+.p-40 {
+  padding: 40px;
 }
 
 .heavy-border-top {
@@ -165,6 +228,7 @@ code {
   text-decoration: none;
   align-items: center;
   justify-content: center;
+  text-align: center;
   padding: 0 40px;
   height: 60px;
   font-size: 16px;

@@ -18,7 +18,7 @@ export default function Footer() {
           our new and upcoming websites — and we would love you to do that as well. <br/>
           Contributions are welcome!
         </div>
-        <div className="layout horizontal center-justified mb-60">
+        <div className="layout horizontal center-justified mb-50">
           <a href={ `${iconsUrl}#installation` } className="button blue-button">Read full instruction</a>
         </div>
         <div className="text-center text-24">Support us:</div>
