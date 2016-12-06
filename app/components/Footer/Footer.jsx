@@ -1,12 +1,11 @@
-import React from 'react'
-import { Link } from 'react-router';
-import SocialButtonsSet from '../SocialButtonElement';
+import React from 'react';
+import SocialButtonsSet from 'SocialButtonElement';
 import AntonAvatar from './images/anton-avatar.png';
 import AllaAvatar from './images/alla-avatar.png';
 import SphereLogo from './images/sphere-logo.png';
 
-const iconsUrl = 'https://github.com/SphereSoftware/rebel-icons/'
-const MITUrl = iconsUrl + '/blob/master/LICENSE.md'
+const iconsUrl = 'https://github.com/SphereSoftware/rebel-icons/';
+const MITUrl = iconsUrl + '/blob/master/LICENSE.md';
 
 export default function Footer() {
   return (
@@ -19,12 +18,10 @@ export default function Footer() {
           our new and upcoming websites — and we would love you to do that as well. <br/>
           Contributions are welcome!
         </div>
-        <div className="layout horizontal center-justified mb-60">
-          <Link to="/installation" className="button blue-button">Read full instruction</Link>
+        <div className="layout horizontal center-justified mb-50">
+          <a href={ `${iconsUrl}#installation` } className="button blue-button">Read full instruction</a>
         </div>
-        <div className="text-center text-24">
-          Support us:
-        </div>
+        <div className="text-center text-24">Support us:</div>
         <SocialButtonsSet />
         <div className="layout horizontal wrap center-justified mb-80">
           <div className="mr-70 ml-70 mt-10 mb-10 text-center">
@@ -36,9 +33,7 @@ export default function Footer() {
             <div className="mt-5">Alla Odeianenko</div>
           </div>
         </div>
-        <div className="text-center text-24 mb-50">
-          Sponsored by:
-        </div>
+        <div className="text-center text-24 mb-50">Sponsored by:</div>
         <div className="text-center mb-80">
           <a href="https://sphereinc.com/">
             <img src={ SphereLogo } alt="Sphere Logo"/>

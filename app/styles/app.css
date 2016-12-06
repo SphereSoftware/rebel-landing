@@ -1,6 +1,16 @@
 :global {
   @import './variables';
-
   @import './flexbox';
   @import './base';
+}
+
+@keyframes :global(pulse) {
+  from {
+    transform: scale(0);
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
 }
